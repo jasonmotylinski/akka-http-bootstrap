@@ -1,16 +1,12 @@
 import akka.actor.ActorSystem
 import akka.http.scaladsl.Http
-import akka.http.scaladsl.model._
-import akka.http.scaladsl.server.Directives._
 import akka.stream.ActorMaterializer
 import akka.http.scaladsl.server.Directives
 import akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport
 import spray.json._
 
 import scala.io.StdIn
-/**
- * Created by jasonm on 3/28/17.
- */
+
 final case class Person(name: String)
 
 trait JsonSupport extends SprayJsonSupport with DefaultJsonProtocol {
@@ -18,10 +14,7 @@ trait JsonSupport extends SprayJsonSupport with DefaultJsonProtocol {
 }
 
 object WebServer extends Directives with JsonSupport {
-
-
   def main(args: Array[String]) {
-
 
     implicit val system = ActorSystem("api")
     implicit val materializer = ActorMaterializer()
@@ -31,8 +24,7 @@ object WebServer extends Directives with JsonSupport {
     val route =
       path("ok") {
         get {
-
-          complete(Person("Jason"))
+          complete(Person("John"))
         }
       }
 
